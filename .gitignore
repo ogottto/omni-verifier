@@ -1,0 +1,31 @@
+# Rust build artifacts
+/target
+
+# Environment and secrets (CRITICAL: never commit real secrets)
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+!.env.example
+
+# Logs and runtime traces
+*.log
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# IDE configurations
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Keys and certificates
+*.pem
+*.key
+*.crt
+
+# Test assets & sample files
+test_assets/

@@ -1,0 +1,6 @@
+target/*
+!target/release/omni-verifier
+.git
+.env
+*.log
+test_assets

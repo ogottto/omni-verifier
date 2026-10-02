@@ -1,0 +1,28 @@
+services:
+  omni-verifier:
+    image: omni-verifier:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: omni-verifier
+    ports:
+      - "8099:8099"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8099
+      - RUST_LOG=info,omni_verifier=debug,actix_web=info
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - DEEPSEEK_BASE_URL=${DEEPSEEK_BASE_URL:-https://api.deepseek.com}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-https://api.openai.com/v1}
+      - VLLM_BASE_URL=${VLLM_BASE_URL:-}
+      - GEMINI_BASE_URL=${GEMINI_BASE_URL:-https://generativelanguage.googleapis.com}
+      - ANTHROPIC_BASE_URL=${ANTHROPIC_BASE_URL:-https://api.anthropic.com}
+      - MAX_PAYLOAD_SIZE_MB=50
+      - MAX_IMAGES_PER_REQUEST=${MAX_IMAGES_PER_REQUEST:-5}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
